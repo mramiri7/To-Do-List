@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>project 1</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+    </head>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        .banner {
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(120deg, #2980b9, #8e44ad);
+            background-position: center;
+        }
+
+        .navbar {
+            width: 85%;
+            margin: auto;
+            padding: 35px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        h3 {
+            font-family: 'Satisfy', cursive;
+            font-size:25px;
+            width: 120px;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .navbar ul li {
+            list-style-type: none;
+            display: inline-block;
+            margin: 0 20px;
+            position: relative;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .navbar ul li::after {
+            content: '';
+            height: 3px;
+            width: 0;
+            background: #8e44ad;
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            transition: 0.5s;
+        }
+
+        .navbar ul li:hover::after {
+            width: 100%;
+        }
+
+        .content {
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            text-align: center;
+            color: #fff;
+        }
+
+        .content h1 {
+            font-size: 70px;
+            margin-top: 80px;
+        }
+
+        .content p {
+            margin: 10px auto;
+            font-weight: 100;
+            line-height: 25px;
+        }
+
+        button {
+            width: 200px;
+            padding: 15px 0;
+            text-align: center;
+            margin: 20px 10px;
+            border-radius: 25px;
+            font-weight:bold;
+            border: 2px solid #8e44ad;
+            background: transparent;
+            color: #fff;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        span {
+            background: #8e44ad;
+            height: 100%;
+            width: 0;
+            border-radius: 25px;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            z-index: -1;
+            transition: 0.5s;
+        }
+        button:hover span{
+            width: 100%;
+        }
+        button:hover {
+            border: none;
+        }
+    </style>
+    <body>
+        <div class="banner">
+            <div class="navbar">
+                <h3>To Do List</h3>
+                <ul>
+                    <li><a href="{% url 'home' %}">HOME</a></li>
+                    <li><a href="{% url 'register' %}">REGISTER</a></li>
+                    <li><a href="{% url 'login' %}">LOGIN</a></li>
+                    <li><a href="https://github.com/mramiri7">About us</a></li>
+                </ul>
+            </div>
+            <div class="content">
+                <h1>Welcome To Solo ToDoList</h1>
+                <p>Solo todolist is platform to write your to do and complete them easily<br> have fun.</p>
+                <div>
+                    <button type="button"><span></span><a href="{% url 'register' %}">Start Now!</a></button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

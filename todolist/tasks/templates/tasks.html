@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+    <title>task list</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-box {
+            height: 400px;
+            width: 400px;
+            background-color: white;
+            border: 1px solid white;
+            border-radius: 10px;
+            margin-top: 10%;
+            margin-left: 35%;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+            text-transform: uppercase;
+            color: #2980b9;
+            padding-top: 10px;
+            padding-bottom: 5px;
+        }
+
+        h3{
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+            text-transform: uppercase;
+            color: #2980b9;
+            padding-top: 10px;
+            padding-bottom: 5px;
+        }
+
+        nav {
+            background-color: azure;
+        }
+
+        nav ul {
+                text-align: center;
+                height: 200px;
+                overflow: hidden;
+                overflow-y: scroll;
+                padding-top: 10px;
+        }
+
+        nav ul li {
+            font-weight: bold;
+            padding-bottom: 5px;
+        }
+
+        nav ul li a{
+            text-decoration: none;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+        .logout {
+                font-size: 10px;
+                align-items: center;
+                text-decoration: none;
+                padding-left: 17%;
+                padding-right: 16%;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                background-color: #fff;
+                border: 2px solid #2980b9;
+                border-radius: 25px;
+                transition: 0.5s;
+        }
+
+        .logout:hover {
+                background-color: #2980b9;
+                color: #ffffff;
+        }
+        .butts {
+
+                margin-left: 25px;
+        }
+
+    </style>
+</head>
+<body style="background: linear-gradient(120deg, #2980b9, #8e44ad);">
+    <div class="main-box">
+        <h1>Undone List</h1>
+        <hr>
+        {% if user.is_authenticated %}
+
+        <h3>Tasks for {{user.username}}</h3>
+        <nav>
+            <ul style="list-style-type: none;">
+                {% for task in object_list %}
+                        <li>{{task.title}}    <a href="{{task.id}}">view</a>  <a href="{% url 'task-delete' task.id %}">delete</a>   <a href="{% url 'task-edit' task.id %}">edit</a></li>
+                        <hr>
+                {% endfor %}
+                </ul>
+                <br>
+                <br>
+                <div class="butts">
+                        <a class="logout" href="{% url 'logout' %}">LOGOUT</a>
+                        <a class="logout"href="{% url 'task-create'  %}">NEW TASK</a>
+                </div>
+                </ul>
+        </nav>
+        {% else %}
+        <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+    </div>
+</body>
+</html>

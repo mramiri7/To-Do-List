@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+    <title>task list</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-box {
+            height: 400px;
+            width: 400px;
+            background-color: white;
+            border: 1px solid white;
+            border-radius: 10px;
+            margin-top: 10%;
+            margin-left: 35%;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+            text-transform: uppercase;
+            color: #2980b9;
+            padding-top: 10px;
+            padding-bottom: 5px;
+        }
+
+        h2{
+            text-align: center;
+            color: #2980b9;
+            padding-top: 10px;
+            padding-bottom: 5px;
+        }
+
+        p {
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        h3{
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+            text-transform: uppercase;
+            color: #2980b9;
+            padding-top: 10px;
+            padding-bottom: 5px;
+        }
+
+        nav {
+            padding-left: 10px;
+            padding-top: 30px;
+            height: 200px;
+        }
+
+        nav ul {
+                text-align: center;
+                height: 200px;
+                overflow: hidden;
+                overflow-y: scroll;
+                padding-top: 10px;
+        }
+
+        nav ul li {
+            font-weight: bold;
+            padding-bottom: 5px;
+        }
+
+        nav ul li a{
+            text-decoration: none;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .back-butt {
+            font-size: 10px;
+            align-items: center;
+            text-decoration: none;
+            padding-left: 17%;
+            padding-right: 16%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            background-color: #fff;
+            border: 2px solid #2980b9;
+            border-radius: 25px;
+            transition: 0.5s;
+        }
+
+        .back-butt:hover{
+                background-color: #2980b9;
+                color: #ffffff;
+                cursor: pointer;
+        }
+
+        .butts {
+            margin-left: 33%;
+        }
+
+        nav form {
+            padding: 0 40px;
+            box-sizing: border-box;
+        }
+
+        form .txt_field {
+            position: relative;
+            border-bottom: 2px solid silver;
+            margin: 15px 0;
+        }
+
+        .txt_field input {
+            width: 100%;
+            padding: 0 5px;
+            height: 40px;
+            font-size: 16px;
+            border: none;
+            outline: none;
+            background: none;
+        }
+
+        .txt_field label {
+            position: absolute;
+            top: 50%;
+            left: 5px;
+            color: #adadad;
+            transform: translateY(-50%);
+            font-size: 16px;
+            pointer-events: none;
+            transition: 0.5s;
+        }
+        .txt_field span::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: #2691d9;
+            transition: 0.5s;
+        }
+
+        .txt_field input:focus ~ label,
+        .txt_field input:valid ~ label {
+            top: -5px;
+            color: #2691d9;
+        }
+        .txt_field input:focus ~ span::before,
+        .txt_field input:valid ~ span::before {
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body style="background: linear-gradient(120deg, #2980b9, #8e44ad);">
+    <div class="main-box">
+        <h1>create new task</h1>
+        <hr>
+        <nav>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="txt_field">
+                    {{ form.title }}
+                    <span></span>
+                    <label>Title</label>
+                </div>
+                <div class="txt_field">
+                    {{ form.description }}
+                    <span></span>
+                    <label>description</label>
+                </div>
+                <div>
+                    {{ form.completed }}
+                    <label>completed</label>
+                </div>
+                <div class="butts">
+                    <input class="back-butt" type="submit" value="SUBMIT">
+                </div>
+            </form>
+        </nav>
+
+    </div>
+</body>
+</html>
